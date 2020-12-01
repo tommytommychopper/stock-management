@@ -1,0 +1,16 @@
+.text-right {
+    float: right;
+}
+
+.list-group{
+    border: none;
+}
+
+#results {
+    display: none;
+}
+
+#loading {
+    text-align: center;
+    display: none;
+}
