@@ -18,6 +18,7 @@ from django.urls import path, include
 from portfolio import views as portfolio_views
 from cash import views as cash_views
 from buy_stock import views as buy_stock_views 
+from sell_stock import views as sell_stock_views
 
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path('', include('users.urls')),
     path('add/', cash_views.add_cash, name='add_cash'), 
     path('buy/', buy_stock_views.buy_stock, name='buy_stock'),
+    path('sell', sell_stock_views.sell_stock, name='sell_stock'),
 ]

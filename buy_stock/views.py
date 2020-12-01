@@ -20,7 +20,7 @@ def buy_stock(request):
         else:
             new_order = Order(user_account=user_account, ticker= ticker, acquisition_cost=acquisition_cost, total_share=total_share, total_cost=total_cost)
             new_order.save()
-        user_account.total -= total_cost
+        user_account.remain_cash -= total_cost
         user_account.save()
         redirect('/')
     return render(request, 'buy_stock/buy_stock.html')
