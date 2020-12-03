@@ -2,3 +2,35 @@
     list-style: none;
 }
 
+.text-right {
+    float: right;
+}
+
+.list-group{
+    border: none;
+}
+
+#results {
+    display: none;
+}
+
+#loading {
+    text-align: center;
+    display: none;
+}
+
+
+/* 
+table, td, th {
+    border: 1px solid black;
+}
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td {
+    padding: 3px;
+} */
