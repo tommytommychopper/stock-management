@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Order
 from cash.models import Account
 
-# Create your views here.
+@login_required(login_url='/login/')
 def buy_stock(request):
     if request.method == 'POST':
         user = request.user

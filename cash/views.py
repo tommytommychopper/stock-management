@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import AddCashForm
 from .models import Account
 
-# Create your views here.
+@login_required(login_url='/login/')
 def add_cash(request):
     form = AddCashForm()
     if request.method == 'POST':

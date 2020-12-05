@@ -1,5 +1,4 @@
 from django.db import models
-# from django.contrib.auth.models import User
 from cash.models import Account
 
 # Create your models here.

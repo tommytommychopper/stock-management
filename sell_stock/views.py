@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from cash.models import Account
 from buy_stock.models import Order 
 import json 
 
+@login_required(login_url='/login/')
 def sell_stock(request):
     if request.method == 'POST':
         user = request.user
