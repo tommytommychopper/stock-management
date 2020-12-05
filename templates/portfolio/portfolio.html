@@ -2,41 +2,50 @@
 
 {% load static %}
 {% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'portfolio/style.css' %}">
 {% endblock %}
 
 {% block content %}
-
 <div class="container mt-3">
-    <canvas id="myChart"></canvas>
-</div>
-
+    <canvas id="myChart"></canvas> 
+    <nav id="menue" class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#chartbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="chartbarNav">
+            <ul class="navbar-nav">
+                <li id="pie" class="nav-item">
+                    <a href="#" class="nav-link chart">Pie</a>
+                </li>
+                <li id="bar" class="nav-item">
+                    <a href="#" class="nav-link chart">Bar</a> 
+                </li>
+                <li id="doughnut" class="nav-item">
+                    <a href="#" class="nav-link chart">Doughnut</a> 
+                </li>
+                <li id="horizontalBar" class="nav-item">
+                    <a href="#" class="nav-link chart">HorizontalBar</a> 
+                </li>
+                <li id="radar" class="nav-item">
+                    <a href="#" class="nav-link chart">Radar</a> 
+                </li>
+                <li id="polarArea" class="nav-item">
+                    <a href="#" class="nav-link chart">PolarArea</a> 
+                </li>
+                <li id="line" class="nav-item chart">
+                    <a href="#" class="nav-link chart">Line</a> 
+                </li>
+            </ul>
+            </div>  
+        </div>
+    </nav>
+ </div>
 
 {% block script %}
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-<script type="text/javascript">
-    let myChart = document.getElementById('myChart').getContext('2d');
-    console.log(myChart);
-
-    let labels = ['ZM', 'GDRX', 'LYFT', 'UBER', 'U'];
-
-    let portfolioPiChart = new Chart(myChart, {
-        type: 'pie', 
-        data: {
-            datasets: [
-                {
-                    label: 'Portfolio',
-                    backgroundColor: ['#f1c40', '#e67e22', '#16a085', '#2980b9', '#FB3640'], 
-                    data: [10, 20, 30, 40, 50], 
-                },
-            ],
-            labels: labels,
-        },
-    })
-
-</script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+<script src=" {% static 'portfolio/app.js' %} "></script>
 {% endblock %}
 
 {% endblock content %}

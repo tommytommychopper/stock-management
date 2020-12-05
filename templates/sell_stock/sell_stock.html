@@ -97,7 +97,7 @@
 {% block script %}
 <script src="{% static 'sell_stock/ticker.js' %}"></script> 
 <script src="{% static 'sell_stock/ui.js' %}"></script> 
-<script type="text/javascript">
+<script>
     let data = "{{ json_stocks }}"
     data = JSON.parse(data.replace(/&quot;/g, '"'));
 

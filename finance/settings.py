@@ -45,10 +45,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'cash.apps.CashConfig', 
     'buy_stock.apps.BuyStockConfig',
-    'sell_stock.apps.SellStockConfig'
-    #'portfolio.apps.PortfolioConfig',
-
-
+    'sell_stock.apps.SellStockConfig',
+    'portfolio.apps.PortfolioConfig',
 ]
 
 MIDDLEWARE = [
