@@ -13,4 +13,13 @@ class Ticker {
         const price = await priceResponse.json();
         return price;
     }
+
+    async getQuote(labels) {
+        const quotes = [];
+        for(let i = 0; i < labels.length; i++){
+                const priceResponse = await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${labels[i]}&apikey=${this.apiKey}`);
+                quotes.push(await priceResponse.json());
+        } 
+        return quotes;
+    }
 }

@@ -29,7 +29,6 @@ class UI {
         // Hide loader
         document.querySelector('#loading').style.display = 'none';
     }
-
     clearTicker() {
         this.company.innerHTML = '';
     }
