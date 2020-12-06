@@ -13,21 +13,37 @@
                 <thead class="sticky-top sticky-head thead-dark">
                     <tr>
                         <th scope="col">Symbol</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Change
+                            </a>
+                            <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">$</a>
+                                <a class="dropdown-item" href="#">%</a>
+                          </div>
+                        </th>
                         <th scope="col">Share</th>
                         <th scope="col">Avg.cost</th>
-                        <th scope="col">Last Price</th>
-                        <th scope="col">Change<span class="dollar"> $</span></th>
                         <th scope="col">Return</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- for loop -->
+                <tbody id="summary">
+                    {% for stock in stocks %}
                     <tr>
-                        <!-- table data -->
-                        <td>
-                            ZM
+                        <td id="ticker">
+                            {{ stock.ticker }}
                         </td>
+                        </td id="price"><td>
+                        </td id="change"><td>
+                        <td id="total_share">
+                            {{ stock.total_share }}
+                        </td>
+                        <td id="aquisition_cost">
+                            {{ stock.acquisition_cost }}
+                        </td id="return"><td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

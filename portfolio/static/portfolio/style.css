@@ -2,5 +2,21 @@ ul {
     list-style-type: none; 
 }
 
+table thead th a {
+    color: #fff;
+    text-decoration: none;
+}
 
+table thead th a:hover {
+    color:#28a745;
+}
+
+table thead th a.nav-link{
+    padding: 0;
+}
  
+/* 
+.nav-link:hover{
+    border-bottom: #28a745 2px solid;
+    color: #fff;
+} */
