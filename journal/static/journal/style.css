@@ -1,0 +1,21 @@
+.col-md-6 {
+    height: 300px;
+    margin-top:20px;
+}
+
+.card{
+    position: relative;
+}
+
+.wrap-link{
+    position: absolute;
+    bottom: 15px;
+}
+
+.card-link+.card-link {
+    margin-left: 5px;
+}
+
+/* .pl-2, .px-2 {
+    padding-left: 0;
+} */

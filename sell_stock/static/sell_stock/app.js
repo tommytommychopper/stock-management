@@ -1,3 +1,22 @@
+// Search user's ticker by user input and make suggestion!
+data = JSON.parse(data.replace(/&quot;/g, '"'));
+
+const input = document.getElementById('ticker');
+const box = document.getElementById('box');
+
+let filteredArr = []
+input.addEventListener('keyup', (e) => {
+    box.textContent = '';
+    filteredArr = data.filter(stock => stock['ticker'].includes(e.target.value.toUpperCase()))
+    if(filteredArr.length > 0){
+        filteredArr.map(data => {
+            box.innerHTML += `<li class="list-group-item">${data['ticker']}</li>`;
+        });
+    }else{
+        box.innerHTML = "<h3>You don't have the stock!</h3>";
+    }
+}) 
+
 // Initialize ticker class
 const ticker = new Ticker;
 // Initialize ui class

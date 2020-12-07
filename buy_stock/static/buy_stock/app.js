@@ -4,9 +4,8 @@ const ticker = new Ticker;
 const ui = new UI;
 // Get Value from input
 const searchTicker = document.getElementById('ticker');
-// Search Price for particular stock 
-// const searchPrice = document.getElementById('search-price');
 
+// Search Price for particular stock 
 searchTicker.addEventListener('keyup', (e) => {
     const userText = e.target.value;
     if(userText !== '') {

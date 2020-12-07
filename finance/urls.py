@@ -28,4 +28,5 @@ urlpatterns = [
     path('add/', cash_views.add_cash, name='add_cash'), 
     path('buy/', buy_stock_views.buy_stock, name='buy_stock'),
     path('sell', sell_stock_views.sell_stock, name='sell_stock'),
+    path('', include('journal.urls')),
 ]

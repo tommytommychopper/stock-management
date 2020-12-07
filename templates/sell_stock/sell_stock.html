@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <div class="card card-body bg light mt-5">
+            <div class="card card-body bg light">
                 <legend class="border-bottom mb-4">Sell Stock </legend>
                 <form id="search-price"> 
                     <div class="form-group">
@@ -95,27 +95,10 @@
 </div>
 
 {% block script %}
-<script src="{% static 'sell_stock/ticker.js' %}"></script> 
-<script src="{% static 'sell_stock/ui.js' %}"></script> 
+<script src="{% static 'buy_stock/ticker.js' %}"></script> 
+<script src="{% static 'buy_stock/ui.js' %}"></script> 
 <script>
     let data = "{{ json_stocks }}"
-    data = JSON.parse(data.replace(/&quot;/g, '"'));
-
-    const input = document.getElementById('ticker');
-    const box = document.getElementById('box');
-
-    let filteredArr = []
-    input.addEventListener('keyup', (e) => {
-        box.textContent = '';
-        filteredArr = data.filter(stock => stock['ticker'].includes(e.target.value.toUpperCase()))
-        if(filteredArr.length > 0){
-            filteredArr.map(data => {
-                box.innerHTML += `<li class="list-group-item">${data['ticker']}</li>`;
-            });
-        }else{
-            box.innerHTML = "<h3>You don't have the stock!</h3>";
-        }
-    }) 
 </script>
 <script src="{% static 'sell_stock/app.js' %}"></script> 
 {% endblock %}
