@@ -3,24 +3,21 @@
 
 {% load static %}
 {% block extra_head %}
-<link rel="stylesheet" type="text/css" href="{% static 'journal/style.css' %}">
+<link rel="stylesheet" href="{% static 'journal/view.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
-    {% for journal in journals %}
-        {% if forloop.first %}<div class="row">{% endif %}
-        <div class="col-lg-4 col-md-6 col-sm-12">
+     <div class="row justify-content-center ">
+        <div class="col">
             <div class="card h-100 p-2">
                 <div class="card-block">
                     <h4 class="card-title">{{ journal.description }}</h4>
                     <h6 class="card-subtitle text-muted"> {{ journal.date|date:"F d, Y" }} </h6>
                     <p class="card-text module-fade p-y-1">{{ journal.content }}</p>
                     <div class="wrap-link" >
-                        <a class="btn btn-outline-success card-link" href="{% url 'view_journal' journal.id %}" >View</a>
+                        <a class="btn btn-outline-success card-link" href="{% url 'journal' %}" >Back</a>
                         <a class="btn btn-outline-secondary card-link" href="{% url 'edit_journal' journal.id %}">Edit</a> 
-                        <!-- <a href="#" class="btn btn-outline-danger card-link">Delete</a>  -->
-                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-danger card-link" data-toggle="modal" data-target="#exampleModal{{journal.id}}">
                             Delete 
                         </button>
@@ -44,13 +41,6 @@
                 </div>
             </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
-        {% if forloop.last %}</div>{% endif %}
-    {% endfor %}
     </div>
 </div>
-{% block script %}
-<script src="{% static 'journal/app.js' %}"></script> 
-{% endblock %}
-
 {% endblock content %}
