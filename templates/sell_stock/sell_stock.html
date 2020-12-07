@@ -22,7 +22,7 @@
                       </div>
                     </div>
                 </form>
-                <div id="box" class="mt-3"></div>
+                <ul id="box" class="list-group list-group-flush mt-3"></ul>
 
                 <div id="loading">
                     <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="">
@@ -110,10 +110,10 @@
         filteredArr = data.filter(stock => stock['ticker'].includes(e.target.value.toUpperCase()))
         if(filteredArr.length > 0){
             filteredArr.map(data => {
-                box.innerHTML += `<b>${data['ticker']}</b><br>`
-            })
+                box.innerHTML += `<li class="list-group-item">${data['ticker']}</li>`;
+            });
         }else{
-            box.innerHTML = "<b>Result was not found...</b>";
+            box.innerHTML = "<h3>You don't have the stock!</h3>";
         }
     }) 
 </script>

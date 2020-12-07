@@ -9,11 +9,12 @@ class UI {
         tickers.forEach(function(ticker){
             output += `
                 <li class="list-group-item list-group-item-action">
-                    <span class="symbol"> ${ticker['1. symbol']} </span>
+                    ${ticker['1. symbol']} 
                     <span class="text-right">${ticker['2. name']}</span>
                 </li>
             `;
         });
+                //    <span class="symbol"> ${ticker['1. symbol']} </span>
         // console.log(output);
         this.company.innerHTML = output;
     }

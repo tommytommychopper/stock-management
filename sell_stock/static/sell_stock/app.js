@@ -4,26 +4,8 @@ const ticker = new Ticker;
 const ui = new UI;
 // Get Value from input
 const searchTicker = document.getElementById('ticker');
-// Search Price for particular stock 
-// const searchPrice = document.getElementById('search-price');
-
-// searchTicker.addEventListener('keyup', (e) => {
-//     const userText = e.target.value;
-//     if(userText !== '') {
-//         ticker.getTicker(userText)
-//             .then(data => {
-//                 // console.log(data.bestMatches[0]['1. symbol']);
-//                 ui.showCompany(data.bestMatches);
-//             })
-//     }
-    
-// });
 
 document.getElementById('search-price').addEventListener('submit', (e) => {
-    console.log(data);
-    // console.log(data);
-    //Hide search results
-    // document.querySelector('#company').innerText = '';
     // Hide results
     document.querySelector('#results').style.display = 'none';
     // Show loader
@@ -46,7 +28,7 @@ function searchPrice() {
 }
 
 // Define UI vars 
-const tickerList = document.querySelector('#company');
+const searchResultBox = document.getElementById('box');
 const textInput = document.querySelector('#ticker');
 const totalShare = document.querySelector('#total-share');
 const currentPrice = document.querySelector('#current-price');
@@ -58,7 +40,7 @@ loadEventListeners();
 
 function loadEventListeners() { 
     //Insert Ticker Text into Input form
-    // tickerList.addEventListener('click', insertTicker);
+    searchResultBox.addEventListener('click', insertTicker);
     //Calculate total profit/loss you are going to make the stock 
     totalShare.addEventListener('keyup', calculateProfit);
     //Clear Result 
@@ -67,8 +49,10 @@ function loadEventListeners() {
 
 function insertTicker(e) {
     if (e.target.classList.contains('list-group-item')) {
-        const symbol = e.target.children[0].textContent;
-        textInput.value = symbol;
+        textInput.value = '';
+        textInput.value = e.target.textContent;
+    //     const symbol = e.target.children[0].textContent;
+    //     textInput.value = symbol;
     }
 }
 
@@ -82,12 +66,11 @@ function calculateProfit(e) {
             acquisition_cost = data.acquisition_cost;
         }
     });
-    console.log(total);
-    console.log((acquisition_cost*shares).toFixed(2));
     const profit = (total - (acquisition_cost*shares)).toFixed(2);
     totalProfit.value = profit;
 }
 
 function clearResult(){
+    document.getElementById('box').textContent = '';
     result.textContent = '';
 }

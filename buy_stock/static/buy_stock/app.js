@@ -63,9 +63,10 @@ function loadEventListeners() {
 }
 
 function insertTicker(e) {
-    if (e.target.classList.contains('list-group-item')) {
-        const symbol = e.target.children[0].textContent;
-        textInput.value = symbol;
+    if (e.target.classList.contains('list-group-item')){
+        textInput.value = e.target.childNodes.item(0).textContent.trim();
+    }else if(e.target.classList.contains('text-right')){
+        textInput.value = e.target.parentElement.childNodes.item(0).textContent.trim();
     }
 }
 
