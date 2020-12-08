@@ -3,6 +3,11 @@ from django.contrib.auth.decorators import login_required
 from .models import Order
 from cash.models import Account
 
+# Add class_based rest Api 
+from rest_framework import viewsets 
+from rest_framework import permissions
+from .serializers import OrderSerializer
+
 @login_required(login_url='/login/')
 def buy_stock(request):
     if request.method == 'POST':
@@ -25,3 +30,9 @@ def buy_stock(request):
         user_account.save()
         redirect('/')
     return render(request, 'buy_stock/buy_stock.html')
+
+# APIs
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
