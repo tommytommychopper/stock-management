@@ -13,6 +13,20 @@ def view_journal(request, id):
     journal = {'journal' : journal}
     return render(request, 'journal/journal_view.html', journal)
 
+def add_journal(request):
+    page_data = {'journal_form' : JournalForm}
+    if request.method == 'POST':
+        journal_form = JournalForm(request.POST)
+        if journal_form.is_valid():
+            d = journal_form.cleaned_data['description']
+            c = journal_form.cleaned_data['content']
+            user = request.user
+            Journal(user=user, description=d, content=c).save()
+            return redirect('journal')
+        else:
+            page_data['journal_form'] = journal_form
+    return render(request, 'journal/journal_add.html', page_data)
+
 def edit_journal(request, id):
     journal = Journal.objects.get(id=id)
     page_data = {'journal_form' : JournalForm(instance=journal) }

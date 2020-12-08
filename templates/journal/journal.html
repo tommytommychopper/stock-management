@@ -3,11 +3,13 @@
 
 {% load static %}
 {% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'journal/style.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container mt-5">
+    <a class="btn btn-success rounded-circle" href="{% url 'add_journal' %}"><i class="fas fa-plus"></i></a>
     {% for journal in journals %}
         {% if forloop.first %}<div class="row">{% endif %}
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -19,7 +21,6 @@
                     <div class="wrap-link" >
                         <a class="btn btn-outline-success card-link" href="{% url 'view_journal' journal.id %}" >View</a>
                         <a class="btn btn-outline-secondary card-link" href="{% url 'edit_journal' journal.id %}">Edit</a> 
-                        <!-- <a href="#" class="btn btn-outline-danger card-link">Delete</a>  -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-outline-danger card-link" data-toggle="modal" data-target="#exampleModal{{journal.id}}">
                             Delete 

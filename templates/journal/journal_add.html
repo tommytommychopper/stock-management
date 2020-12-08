@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'journal/view.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+     <div class="row justify-content-center ">
+        <div class="col">
+            <div class="card h-100 p-2">
+                <div class="card-block">
+                    <form method="POST" action="" autocomplete="off"> {% csrf_token %}
+                        {{ journal_form.as_p }}
+                        <div class="wrap-link" >
+                            <button class="btn btn-outline-secondary card-link">Add</button>
+                            <a class="btn btn-outline-danger card-link" href="{% url 'journal' %}">Cancel</a> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
