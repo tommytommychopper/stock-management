@@ -45,7 +45,7 @@ function calculateProfit(i){
     const share = shareList[i].textContent;
     const aquisition_cost = aquisitionList[i].textContent;
     const profit = ((price * share) - (aquisition_cost * share)).toFixed(2);
-    if(profit > 0){
+    if(profit >= 0){
         profitList[i].style.color = 'green';
     }else{
         profitList[i].style.color = 'red'
@@ -73,7 +73,7 @@ dollar.addEventListener('click', ()=>{
 
 // output the results
 function setChange(change, i , sign){
-    if(change > 0){
+    if(change >= 0){
         changeList[i].style.color = 'green';
     }else{
         changeList[i].style.color = 'red';
@@ -84,7 +84,6 @@ function setChange(change, i , sign){
         changeList[i].textContent = change;
     }
 }
-
 
 // Draw Chart
 let myChart = document.getElementById('myChart').getContext('2d');

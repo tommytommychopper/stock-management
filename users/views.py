@@ -4,7 +4,6 @@ from .forms import RegisterForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-# Create your views here.
 def register(request):
     form = RegisterForm()
     if request.method == 'POST':

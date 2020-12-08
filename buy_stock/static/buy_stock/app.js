@@ -20,7 +20,7 @@ searchTicker.addEventListener('keyup', (e) => {
 
 document.getElementById('search-price').addEventListener('submit', (e) => {
     //Hide search results
-    document.querySelector('#company').innerText = '';
+    document.querySelector('#box').innerText = '';
     // Hide results
     document.querySelector('#results').style.display = 'none';
     // Show loader
@@ -42,7 +42,7 @@ function searchPrice() {
 }
 
 // Define UI vars 
-const tickerList = document.querySelector('#company');
+const tickerList = document.querySelector('#box');
 const textInput = document.querySelector('#ticker');
 const totalShare = document.querySelector('#total-share');
 const currentPrice = document.querySelector('#current-price');

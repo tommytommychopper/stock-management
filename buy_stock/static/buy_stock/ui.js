@@ -1,6 +1,6 @@
 class UI {
     constructor(){
-        this.company = document.getElementById('company');
+        this.company = document.getElementById('box');
     }
     showCompany(tickers) {
         let output = "";
@@ -15,17 +15,18 @@ class UI {
         this.company.innerHTML = output;
     }
 
-    showPrice(tickers) {
-        const ticker = tickers['01. symbol'];
-        const price = parseFloat(tickers['05. price']);
+    showPrice(data) {
+        const ticker = data['01. symbol'];
+        const price = parseFloat(data['05. price']);
         let share = 0;
         let acquisition_cost = 0.0
-        data.forEach(data => {
+        for(let i = 0; i < data.length; i++){
             if (data.ticker === userText.toUpperCase()){
                 share = data.total_share; 
                 acquisition_cost = (data.acquisition_cost).toFixed(2);
             }
-        });
+        } 
+        console.log(document.getElementById('box').textContent);
         document.getElementById('box').textContent = '';
         document.getElementById('box').innerHTML = `
             <table class="table table-bordered">

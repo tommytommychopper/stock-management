@@ -1,16 +1,11 @@
 from rest_framework import serializers
 from .models import Order
-from cash.models import Account
-# from django.contrib.auth.models import User 
+from cash.serializers import AccountSerializer
 
-# class UserSerializer(serializers.HyperlinkedModelSerializer):
-#      class Meta:
-#         model = User
-#         fields = ['username', 'email']
-
+# Create one class for each of models that you want to expose through my rest API
+# Use hyperlinkedModelSerializer for exposing my HTML discoverable rest API 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    user_account = AccountSerializer(required=False)
     class Meta:
-        # user_account = Account
-        # user = Account
         model = Order
-        fields = ['ticker', 'total_share']
+        fields = '__all__'
