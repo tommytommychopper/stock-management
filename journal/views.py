@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Journal
 from .forms import JournalForm
 
+@login_required(login_url='/login/')
 def journal(request):
     user = request.user
     journals = Journal.objects.filter(user=user)

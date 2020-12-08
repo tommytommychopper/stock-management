@@ -13,8 +13,6 @@ data.forEach(d => {
     shares.push(d['total_share']);
 });
 
-console.log(data);
-
 // Define UI vars 
 const priceList = document.querySelectorAll('.price');
 const changeList = document.querySelectorAll('.change');
@@ -23,6 +21,9 @@ const aquisitionList = document.querySelectorAll('.aquisition_cost');
 const profitList = document.querySelectorAll('.return');
 const dollar = document.querySelector('#dollar')
 const percent = document.querySelector('#percent');
+const totalAsset = document.querySelector('#total-asset')
+const totalCash = document.querySelector('#total-cash')
+const summary = document.querySelectorAll('.summary')
 
 // Get Live Stock Data using Fetch API every 5 min
 let stocks;
@@ -37,6 +38,7 @@ ticker.getQuote(labels)
         setChange(change, i, '');
         calculateProfit(i);
     });
+    calculateTotalAsset();
 })
 // }, 300000)
 
@@ -85,12 +87,27 @@ function setChange(change, i , sign){
     }
 }
 
+// Calculate Total Account Value
+function calculateTotalAsset(){
+    let sum = 0.0;
+    summary.forEach( (data, i) =>{
+    const share = shareList[i].textContent;
+    console.log(share)
+    const aquisition_cost = aquisitionList[i].textContent;
+    console.log(aquisition_cost)
+    // const profit = parseFloat(profitList[i].textContent);
+    // console.log(profit)
+    sum += (aquisition_cost * share);
+    console.log(sum)
+});
+// console.log(totalCash.textContent);
+sum = sum + parseFloat(totalCash.textContent.replace('$', ''));
+totalAsset.textContent = `$ ${sum}`
+}
+
 // Draw Chart
 let myChart = document.getElementById('myChart').getContext('2d');
-console.log(data);
-
 let type = 'pie';
-
 let portfolioChart = new Chart(myChart, {
     type: type, 
     data: {
@@ -123,9 +140,9 @@ let portfolioChart = new Chart(myChart, {
 document.body.addEventListener('click', (e) => {
     if(e.target.classList.contains('chart')){
         type = e.target.parentElement.id;
-        const chart = document.querySelector('#myChart');
         portfolioChart.destroy();
-        if(type === 'bar' || type ==='horizontalBar' || type === 'line'){
+        myChart = document.getElementById('myChart').getContext('2d');
+        if(type !== 'bar' || type !=='horizontalBar' || type !== 'line'){
             portfolioChart = new Chart(myChart, {
                 type: type, 
                 data: {

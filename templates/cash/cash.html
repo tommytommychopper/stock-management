@@ -3,10 +3,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
-           <div class="card card-body bg-light mt-5">
+           <div class="card card-body mt-5">
             {% if messages %}
                {% for message in messages %}
-                    <div class="alert alert-danger mt-2 mb-2">
+                    <div id="msg" class="alert alert-danger mt-2 mb-2">
                         {{ message }}
                     </div>
                 {% endfor %}
@@ -26,7 +26,7 @@
                       </div>
                   </div>
                   <div class="form-group text-center">
-                    <input type="submit" class="btn btn-success" value="Add">
+                    <input type="submit" class="btn btn-success " value="Add">
                   </div>
               </form>
             </div>

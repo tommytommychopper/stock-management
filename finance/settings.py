@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'sell_stock.apps.SellStockConfig',
     'portfolio.apps.PortfolioConfig',
     'journal.apps.JournalConfig',
-    'rest_framework'
+    'about.apps.AboutConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

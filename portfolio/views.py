@@ -20,9 +20,10 @@ def portfolio(request):
         if not stocks:
             showMessage(request, "You don't have any stock now. Buy some to have a fun!")
             return redirect('buy_stock')
+        total_cash = user_account.remain_cash
         json_stocks = json.dumps(list(Order.objects.filter(user_account=user_account).values()))
-        stocks = {'json_stocks' : json_stocks, 'stocks' : stocks}
-        return render(request, 'portfolio/portfolio.html', stocks)
+        assets = {'json_stocks' : json_stocks, 'stocks' : stocks, 'total_cash' : total_cash}
+        return render(request, 'portfolio/portfolio.html', assets)
     else:
         # messages.info(request, 'You need to add some cash to your account')
         showMessage(request, 'You need to add some money to your account')
