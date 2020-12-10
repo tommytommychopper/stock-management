@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+
+label{
+    font-family: 'Libre Baskerville', serif;
+}
+
+#about{
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+}
+
+#about:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url('money.jpg') no-repeat center center/cover;
+    opacity: 0.5;
+}
+
+.row{
+    height: 300px;
+}
+
+.card{
+    display:none;
+}

@@ -26,7 +26,7 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 SECRET_KEY = '6ai0zpibc*ud%lldue2sh)3n)+5(s_%p_8)0^8xr*8$9@l1&vg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
 ALLOWED_HOSTS = []
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'finance.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
