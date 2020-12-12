@@ -1,7 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
 
+h5 {
+    font-size: 30px;
+}
+
 label{
     font-family: 'Libre Baskerville', serif;
+}
+
+a {
+    color: #212529;
+}
+
+a:hover {
+    text-decoration: none;
+    color: green;
 }
 
 #about{
@@ -27,7 +40,6 @@ label{
 }
 
 .card{
-    text-align: center;
     display:none;
 }
 
@@ -35,10 +47,21 @@ label{
     border-bottom: 2px solid #f0f0f0 ;
 }
 
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #picture-of-me{
     display: inline-block;
-    width: 200px;
-
-    padding-top: 10px;
+    width: 300px;
+    padding: 20px;
     border-radius: 50%;
+}
+
+i {
+    padding: 5px;
+    font-size: 1rem; 
 }
