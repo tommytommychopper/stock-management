@@ -27,5 +27,18 @@ label{
 }
 
 .card{
+    text-align: center;
     display:none;
+}
+
+.card .card-title{
+    border-bottom: 2px solid #f0f0f0 ;
+}
+
+#picture-of-me{
+    display: inline-block;
+    width: 200px;
+
+    padding-top: 10px;
+    border-radius: 50%;
 }
