@@ -2,6 +2,7 @@
 
 {% load static %}
 {% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'portfolio/style.css' %}">
 {% endblock %}
 
@@ -18,7 +19,8 @@
         <div class="col">
             <table class="table table-striped table-bordered text-center">
                 <thead class="sticky-top sticky-head thead-dark">
-                    <th colspan=2 scope="colgroup">My Account</th>
+                    <th colspan=2 scope="colgroup">My Account <span id="toggle-account" class="text-white"><i
+                                class="fas fa-arrow-up"></i></span></th>
                 </thead>
                 <tbody id="my-account">
                     <tr>
@@ -43,7 +45,8 @@
 
     <table class="table table-striped table-bordered text-center">
         <thead class="sticky-top sticky-head thead-dark">
-            <th colspan=2 scope="colgroup">Portofolio</th>
+            <th colspan=2 scope="colgroup">Portofolio<span id="toggle-portofolio" class="text-white"><i
+                        class="fas fa-arrow-up"></i></span></th>
         </thead>
         <tbody id="my-portofolio">
             <tr>
@@ -127,6 +130,23 @@
             </tr>
         </tbody>
     </table>
+    <div class="row mt-5">
+        <div class="col">
+            <table class="table table-striped table-bordered text-center">
+                <thead class="sticky-top sticky-head thead-dark">
+                    <th colspan=2 scope="colgroup">Chart<span id="toggle-chart" class="text-white"><i
+                                class="fas fa-arrow-up"></i></span></th>
+                </thead>
+                <tbody id="chart">
+                    <tr>
+                        <td>
+                            <canvas id="index"></canvas>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 

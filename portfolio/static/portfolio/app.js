@@ -205,4 +205,34 @@ document.body.addEventListener('click', (e) => {
     }
 });
 
+// Toggle feature
+const account = document.querySelector('#my-account');
+const accountToggler = document.querySelector('#toggle-account');
+const portofolio = document.querySelector('#my-portofolio');
+const portofolioToggler = document.querySelector('#toggle-portofolio');
+const chart = document.querySelector('#chart');
+const chartToggler = document.querySelector('#toggle-chart');
+
+accountToggler.addEventListener('click', function () {
+    toggler(account, accountToggler);
+});
+
+portofolioToggler.addEventListener('click', function () {
+    toggler(portofolio, portofolioToggler);
+});
+
+chartToggler.addEventListener('click', function () {
+    toggler(chart, chartToggler);
+});
+
+function toggler(content, contentToggler) {
+    if (content.style.display === '') {
+        content.style.display = 'none';
+        contentToggler.children[0].className = "fas fa-arrow-down"
+    } else if (content.style.display === 'none') {
+        content.style.display = '';
+        contentToggler.children[0].className = "fas fa-arrow-up"
+    }
+}
+
 

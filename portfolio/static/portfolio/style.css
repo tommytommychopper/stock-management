@@ -14,9 +14,12 @@ table thead th a:hover {
 table thead th a.nav-link{
     padding: 0;
 }
- 
-/* 
-.nav-link:hover{
-    border-bottom: #28a745 2px solid;
-    color: #fff;
-} */
+
+i {
+    padding: 5px;
+    font-size: 1rem; 
+}
+
+span{
+    float: right;
+}
