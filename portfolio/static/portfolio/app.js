@@ -27,29 +27,29 @@ const summary = document.querySelectorAll('.summary')
 
 // Get Live Stock Data using Fetch API every 5 min
 let stocks;
-// setInterval(()=>{
-ticker.getQuote(labels)
-.then(data => {
-    data.forEach((d, i)=>{
-        stocks = data;
-        price = parseFloat(d['Global Quote']['05. price']).toFixed(2);
-        priceList[i].textContent = price;
-        change = parseFloat(d['Global Quote']['09. change']).toFixed(2);
-        setChange(change, i, '');
-        calculateProfit(i);
-    });
-    calculateTotalAsset();
-})
-// }, 300000)
+setInterval(() => {
+    ticker.getQuote(labels)
+        .then(data => {
+            data.forEach((d, i) => {
+                stocks = data;
+                price = parseFloat(d['Global Quote']['05. price']).toFixed(2);
+                priceList[i].textContent = price;
+                change = parseFloat(d['Global Quote']['09. change']).toFixed(2);
+                setChange(change, i, '');
+                calculateProfit(i);
+            });
+            calculateTotalAsset();
+        })
+}, 300000)
 
-function calculateProfit(i){
+function calculateProfit(i) {
     const price = priceList[i].textContent;
     const share = shareList[i].textContent;
     const aquisition_cost = aquisitionList[i].textContent;
     const profit = ((price * share) - (aquisition_cost * share)).toFixed(2);
-    if(profit >= 0){
+    if (profit >= 0) {
         profitList[i].style.color = 'green';
-    }else{
+    } else {
         profitList[i].style.color = 'red'
     }
     profitList[i].textContent = profit;
@@ -57,16 +57,16 @@ function calculateProfit(i){
 
 // EventListeners
 // change the format to PERCENT
-percent.addEventListener('click', ()=>{
-    stocks.forEach((stock, i)=>{
+percent.addEventListener('click', () => {
+    stocks.forEach((stock, i) => {
         change = parseFloat(stock['Global Quote']['10. change percent']).toFixed(2);
-        setChange(change, i,  '%');
+        setChange(change, i, '%');
     });
 });
 
 // change the format to Dollar 
-dollar.addEventListener('click', ()=>{
-    stocks.forEach((stock, i)=>{
+dollar.addEventListener('click', () => {
+    stocks.forEach((stock, i) => {
         change = parseFloat(stock['Global Quote']['09. change']).toFixed(2);
         setChange(change, i, '');
     });
@@ -74,49 +74,43 @@ dollar.addEventListener('click', ()=>{
 });
 
 // output the results
-function setChange(change, i , sign){
-    if(change >= 0){
+function setChange(change, i, sign) {
+    if (change >= 0) {
         changeList[i].style.color = 'green';
-    }else{
+    } else {
         changeList[i].style.color = 'red';
     }
-    if(sign !== ''){
-        changeList[i].textContent = `${change} ${sign}`; 
-    }else{
+    if (sign !== '') {
+        changeList[i].textContent = `${change} ${sign}`;
+    } else {
         changeList[i].textContent = change;
     }
 }
 
 // Calculate Total Account Value
-function calculateTotalAsset(){
+function calculateTotalAsset() {
     let sum = 0.0;
-    summary.forEach( (data, i) =>{
-    const share = shareList[i].textContent;
-    console.log(share)
-    const aquisition_cost = aquisitionList[i].textContent;
-    console.log(aquisition_cost)
-    // const profit = parseFloat(profitList[i].textContent);
-    // console.log(profit)
-    sum += (aquisition_cost * share);
-    console.log(sum)
-});
-// console.log(totalCash.textContent);
-sum = sum + parseFloat(totalCash.textContent.replace('$', ''));
-totalAsset.textContent = `$ ${sum}`
+    summary.forEach((data, i) => {
+        const share = shareList[i].textContent;
+        const aquisition_cost = aquisitionList[i].textContent;
+        sum += (aquisition_cost * share);
+    });
+    sum = sum + parseFloat(totalCash.textContent.replace('$', ''));
+    totalAsset.textContent = `$ ${sum}`
 }
 
 // Draw Chart
 let myChart = document.getElementById('myChart').getContext('2d');
 let type = 'pie';
 let portfolioChart = new Chart(myChart, {
-    type: type, 
+    type: type,
     data: {
         datasets: [
-        {
-            label: 'Portfolio',
-            backgroundColor: ['#f1c40', '#e67e22', '#16a085', '#2980b9', '#FB3640'], 
-            data: shares, 
-        },
+            {
+                label: 'Portfolio',
+                backgroundColor: ['#f1c40', '#e67e22', '#16a085', '#2980b9', '#FB3640'],
+                data: shares,
+            },
         ],
         labels: labels,
     },
@@ -138,20 +132,20 @@ let portfolioChart = new Chart(myChart, {
 
 // destroy previous chart and create new one
 document.body.addEventListener('click', (e) => {
-    if(e.target.classList.contains('chart')){
+    if (e.target.classList.contains('chart')) {
         type = e.target.parentElement.id;
         portfolioChart.destroy();
         myChart = document.getElementById('myChart').getContext('2d');
-        if(type !== 'bar' || type !=='horizontalBar' || type !== 'line'){
+        if (type !== 'bar' || type !== 'horizontalBar' || type !== 'line') {
             portfolioChart = new Chart(myChart, {
-                type: type, 
+                type: type,
                 data: {
                     datasets: [
-                    {
-                        label: 'Portfolio',
-                        backgroundColor: ['#f1c40', '#e67e22', '#16a085', '#2980b9', '#FB3640'], 
-                        data: shares, 
-                    },
+                        {
+                            label: 'Portfolio',
+                            backgroundColor: ['#f1c40', '#e67e22', '#16a085', '#2980b9', '#FB3640'],
+                            data: shares,
+                        },
                     ],
                     labels: labels,
                 },
@@ -159,7 +153,7 @@ document.body.addEventListener('click', (e) => {
                     legend: {
                         position: 'right',
                     },
-                    
+
                     plugins: {
                         datalabels: {
                             color: '#fff',
@@ -171,16 +165,16 @@ document.body.addEventListener('click', (e) => {
                     },
                 },
             });
-        }else{
+        } else {
             portfolioChart = new Chart(myChart, {
-                type: type, 
+                type: type,
                 data: {
                     datasets: [
-                    {
-                        label: 'Portfolio',
-                        backgroundColor: ['#f1c40', '#e67e22', '#16a085', '#2980b9', '#FB3640'], 
-                        data: shares, 
-                    },
+                        {
+                            label: 'Portfolio',
+                            backgroundColor: ['#f1c40', '#e67e22', '#16a085', '#2980b9', '#FB3640'],
+                            data: shares,
+                        },
                     ],
                     labels: labels,
                 },
@@ -192,10 +186,10 @@ document.body.addEventListener('click', (e) => {
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true,
-                                
+
                             }
                         }]
-                    },  
+                    },
                     plugins: {
                         datalabels: {
                             color: '#fff',

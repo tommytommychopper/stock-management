@@ -8,15 +8,14 @@
 {% block content %}
 <div class="container mt-5">
     {% if messages %}
-        {% for message in messages %}
-            <div id="msg" class="alert alert-success mt-2 mb-2">
-                {{ message }}
-            </div>
-        {% endfor %}
+    {% for message in messages %}
+    <div id="msg" class="alert alert-success mt-2 mb-2">
+        {{ message }}
+    </div>
+    {% endfor %}
     {% endif %}
     <div class="row mb-5">
         <div class="col">
-            <h1>You made updated!!!!</h1>
             <table class="table table-striped table-bordered text-center">
                 <thead class="sticky-top sticky-head thead-dark">
                     <th colspan=2 scope="colgroup">My Account</th>
@@ -57,13 +56,15 @@
                                         <th scope="col">Symbol</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Change
                                             </a>
-                                            <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+                                            <div class="dropdown-menu text-center"
+                                                aria-labelledby="navbarDropdownMenuLink">
                                                 <a id="dollar" class="dropdown-item" href="#">$</a>
                                                 <a id="percent" class="dropdown-item" href="#">%</a>
-                                          </div>
+                                            </div>
                                         </th>
                                         <th scope="col">Share</th>
                                         <th scope="col">Avg.cost</th>
@@ -87,7 +88,7 @@
                             </table>
                         </div>
                         <div class="col-lg-6 col-md-12">
-                            <canvas id="myChart"></canvas> 
+                            <canvas id="myChart"></canvas>
                             <div class="container">
                                 <nav id="menue" class="navbar navbar-expand-sm navbar-light bg-light">
                                     <button class="navbar-toggler" data-toggle="collapse" data-target="#chartbarNav">
@@ -99,25 +100,25 @@
                                                 <a href="#" class="nav-link chart">Pie</a>
                                             </li>
                                             <li id="bar" class="nav-item">
-                                                <a href="#" class="nav-link chart">Bar</a> 
+                                                <a href="#" class="nav-link chart">Bar</a>
                                             </li>
                                             <li id="doughnut" class="nav-item">
-                                                <a href="#" class="nav-link chart">Doughnut</a> 
+                                                <a href="#" class="nav-link chart">Doughnut</a>
                                             </li>
                                             <li id="horizontalBar" class="nav-item">
-                                                <a href="#" class="nav-link chart">HorizontalBar</a> 
+                                                <a href="#" class="nav-link chart">HorizontalBar</a>
                                             </li>
                                             <li id="radar" class="nav-item">
-                                                <a href="#" class="nav-link chart">Radar</a> 
+                                                <a href="#" class="nav-link chart">Radar</a>
                                             </li>
                                             <li id="polarArea" class="nav-item">
-                                                <a href="#" class="nav-link chart">PolarArea</a> 
+                                                <a href="#" class="nav-link chart">PolarArea</a>
                                             </li>
                                             <li id="line" class="nav-item chart">
-                                                <a href="#" class="nav-link chart">Line</a> 
+                                                <a href="#" class="nav-link chart">Line</a>
                                             </li>
                                         </ul>
-                                    </div>  
+                                    </div>
                                 </nav>
                             </div>
                         </div>
@@ -127,7 +128,7 @@
         </tbody>
     </table>
 </div>
-    
+
 
 {% block script %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
