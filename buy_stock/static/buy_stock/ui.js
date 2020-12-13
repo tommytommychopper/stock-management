@@ -8,7 +8,7 @@ class UI {
             output += `
                 <li class="list-group-item list-group-item-action">
                     ${tickers[i]['1. symbol']} 
-                    <span class="text-right">${ticker[i]['2. name']}</span>
+                    <span class="text-right">${tickers[i]['2. name']}</span>
                 </li>
             `;
         }
@@ -49,5 +49,38 @@ class UI {
 
     clearTicker() {
         this.company.innerHTML = '';
+    }
+
+    displayChart(data, name) {
+        let keys = Object.keys(data);
+        let dates = [];
+        let pricesClose = [];
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        // get prices for last no. of months
+        for (let i = 0; i < 12; i++) {
+            let key = keys[i];
+            pricesClose.push(data[key]['4. close']);
+            dates.push(months[Number(key.slice(5, 7) - 1)] + key.slice(2, 4));
+        }
+        let labels = dates.reverse();
+        let prices = pricesClose.reverse();
+        let indexChart = document.getElementById('index').getContext('2d');
+        indexChart = new Chart(indexChart, {
+            // The type of chart we want to create
+            type: 'line',
+            // The data for our dataset
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: name,
+                    borderColor: '#28a745',
+                    data: prices,
+                    lineTension: 0,
+                }]
+            },
+            // Configuration options go here
+            options: {}
+        });
     }
 }

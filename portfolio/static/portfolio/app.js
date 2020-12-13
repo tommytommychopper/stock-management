@@ -26,8 +26,13 @@ const totalCash = document.querySelector('#total-cash')
 const summary = document.querySelectorAll('.summary')
 
 // Get Live Stock Data using Fetch API every 5 min
-let stocks;
+getStockPrice();
 setInterval(() => {
+    getStockPrice();
+}, 300000)
+
+let stocks;
+function getStockPrice() {
     ticker.getQuote(labels)
         .then(data => {
             data.forEach((d, i) => {
@@ -40,7 +45,7 @@ setInterval(() => {
             });
             calculateTotalAsset();
         })
-}, 300000)
+}
 
 function calculateProfit(i) {
     const price = priceList[i].textContent;
@@ -235,4 +240,20 @@ function toggler(content, contentToggler) {
     }
 }
 
+// Default Symbol
+displayChart(labels[0]);
+document.body.addEventListener('click', (e) => {
+    if (e.target.classList.contains('index')) {
+        const symbol = e.target.parentElement.id;
+        displayChart(symbol);
+    }
+})
+
+function displayChart(symbol) {
+    ticker.getMonthlyPrice(symbol)
+        .then(data => {
+            // console.log(data['Monthly Time Series']['2020-12-11']);
+            ui.displayChart(data['Monthly Time Series'], symbol);
+        })
+}
 

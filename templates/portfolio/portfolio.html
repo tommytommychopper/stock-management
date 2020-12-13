@@ -100,25 +100,25 @@
                                     <div class="collapse navbar-collapse" id="chartbarNav">
                                         <ul class="navbar-nav">
                                             <li id="pie" class="nav-item">
-                                                <a href="#" class="nav-link chart">Pie</a>
+                                                <a href="javascript:;" class="nav-link chart">Pie</a>
                                             </li>
                                             <li id="bar" class="nav-item">
-                                                <a href="#" class="nav-link chart">Bar</a>
+                                                <a href="javascript:;" class="nav-link chart">Bar</a>
                                             </li>
                                             <li id="doughnut" class="nav-item">
-                                                <a href="#" class="nav-link chart">Doughnut</a>
+                                                <a href="javascript:;" class="nav-link chart">Doughnut</a>
                                             </li>
                                             <li id="horizontalBar" class="nav-item">
-                                                <a href="#" class="nav-link chart">HorizontalBar</a>
+                                                <a href="javascript:;" class="nav-link chart">HorizontalBar</a>
                                             </li>
                                             <li id="radar" class="nav-item">
-                                                <a href="#" class="nav-link chart">Radar</a>
+                                                <a href="javascript:;" class="nav-link chart">Radar</a>
                                             </li>
                                             <li id="polarArea" class="nav-item">
-                                                <a href="#" class="nav-link chart">PolarArea</a>
+                                                <a href="javascript:;" class="nav-link chart">PolarArea</a>
                                             </li>
                                             <li id="line" class="nav-item chart">
-                                                <a href="#" class="nav-link chart">Line</a>
+                                                <a href="javascript:;" class="nav-link chart">Line</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -140,7 +140,46 @@
                 <tbody id="chart">
                     <tr>
                         <td>
+                            <div class="container">
+                                <nav id="menue" class="navbar navbar-expand-sm navbar-light bg-light">
+                                    <button class="navbar-toggler" data-toggle="collapse" data-target="#chartbarNav">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="chartbarNav">
+                                        <ul class="navbar-nav">
+                                            {% for stock in stocks %}
+                                            <li id='{{ stock.ticker }}' class="nav-item">
+                                                <a href="javascript:;" class="nav-link index">{{ stock.ticker }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
                             <canvas id="index"></canvas>
+                            <div class="container">
+                                <nav id="menue" class="navbar navbar-expand-sm navbar-light bg-light">
+                                    <button class="navbar-toggler" data-toggle="collapse" data-target="#monthBarNav">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="monthBarNav">
+                                        <ul class="navbar-nav">
+                                            <li id='1M' class="nav-item ">
+                                                <a href="javascript:;" class=" nav-link index">1M</a>
+                                            </li>
+                                            <li id='3M' class="nav-item ">
+                                                <a href="javascript:;" class="nav-link index">3M</a>
+                                            </li>
+                                            <li id='6M' class="nav-item ">
+                                                <a href="javascript:;" class="nav-link index">6M</a>
+                                            </li>
+                                            <li id='1Y' class="nav-item ">
+                                                <a href="javascript:;" class="nav-link index">1Y</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
