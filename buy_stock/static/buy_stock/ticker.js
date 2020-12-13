@@ -1,7 +1,7 @@
 class Ticker {
     constructor() {
-        // this.apiKey = 'EIUAKU6JXSWNBCYI';
-        this.apiKey = '64HTJZOFLGKCO0UW';
+        this.apiKey = 'EIUAKU6JXSWNBCYI';
+        // this.apiKey = '64HTJZOFLGKCO0UW';
     }
     async getTicker(ticker) {
         const tickerResponse = await fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${ticker}&apikey=${this.apiKey}`);

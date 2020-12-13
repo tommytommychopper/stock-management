@@ -1,4 +1,3 @@
-// Search user's ticker by user input and make suggestion!
 data = JSON.parse(data.replace(/&quot;/g, '"'));
 
 const input = document.getElementById('ticker');
@@ -8,14 +7,14 @@ let filteredArr = []
 input.addEventListener('keyup', (e) => {
     box.textContent = '';
     filteredArr = data.filter(stock => stock['ticker'].includes(e.target.value.toUpperCase()))
-    if(filteredArr.length > 0){
+    if (filteredArr.length > 0) {
         filteredArr.map(data => {
             box.innerHTML += `<li class="list-group-item">${data['ticker']}</li>`;
         });
-    }else{
+    } else {
         box.innerHTML = "<h3>You don't have the stock!</h3>";
     }
-}) 
+})
 
 // Initialize ticker class
 const ticker = new Ticker;
@@ -37,13 +36,13 @@ document.getElementById('search-price').addEventListener('submit', (e) => {
 let userText = "";
 function searchPrice() {
     userText = searchTicker.value;
-    if(userText !== '') {
+    if (userText !== '') {
         ticker.getPrice(userText)
             .then(data => {
                 // console.log(data['Global Quote']['05. price']);
                 ui.showPrice(data['Global Quote']);
             })
-    } 
+    }
 }
 
 // Define UI vars 
@@ -57,7 +56,7 @@ const result = document.querySelector('#results');
 
 loadEventListeners();
 
-function loadEventListeners() { 
+function loadEventListeners() {
     //Insert Ticker Text into Input form
     searchResultBox.addEventListener('click', insertTicker);
     //Calculate total profit/loss you are going to make the stock 
@@ -70,26 +69,26 @@ function insertTicker(e) {
     if (e.target.classList.contains('list-group-item')) {
         textInput.value = '';
         textInput.value = e.target.textContent;
-    //     const symbol = e.target.children[0].textContent;
-    //     textInput.value = symbol;
+        //     const symbol = e.target.children[0].textContent;
+        //     textInput.value = symbol;
     }
 }
 
 function calculateProfit(e) {
     const shares = e.target.value;
     const price = parseFloat(currentPrice.value);
-    const total =  (shares * price).toFixed(2);
+    const total = (shares * price).toFixed(2);
     let acquisition_cost = 0.0;
     data.forEach(data => {
-        if (data.ticker === userText.toUpperCase()){
+        if (data.ticker === userText.toUpperCase()) {
             acquisition_cost = data.acquisition_cost;
         }
     });
-    const profit = (total - (acquisition_cost*shares)).toFixed(2);
+    const profit = (total - (acquisition_cost * shares)).toFixed(2);
     totalProfit.value = profit;
 }
 
-function clearResult(){
+function clearResult() {
     document.getElementById('box').textContent = '';
     result.textContent = '';
 }

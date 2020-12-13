@@ -10,23 +10,23 @@
     <div class="row">
         <div class="col-md-6 mx-auto">
             <div class="card card-body">
-            {% if messages %}
-            {% for message in messages %}
-                    <div id="msg" class="alert alert-danger mt-2 mb-2">
-                        {{ message }}
-                    </div>
+                {% if messages %}
+                {% for message in messages %}
+                <div id="msg" class="alert alert-danger mt-2 mb-2">
+                    {{ message }}
+                </div>
                 {% endfor %}
-            {% endif %}
+                {% endif %}
                 <legend class="border-bottom mb-4">Search Stock </legend>
                 <form id="search-price">
                     <div class="form-group">
-                      <div class="input-group">
-                        <input type="text" id="ticker" placeholder="Ticker" class="form-control">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        <div class="input-group">
+                            <input type="text" id="ticker" placeholder="Ticker" class="form-control">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </div>
+                            <br>
                         </div>
-                        <br>
-                      </div>
                     </div>
                 </form>
                 <ul id="box" class="list-group list-group-flush"></ul>
@@ -35,14 +35,14 @@
                 </div>
                 <div id="results" class="pt-4">
                     <h5>Results</h5>
-                    <form method="POST" id="caculate">  {% csrf_token %}
+                    <form method="POST" id="caculate"> {% csrf_token %}
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Ticker</span>
                                 </div>
                                 <!-- {{ form.ticker }} -->
-                                <input type="text" name="ticker" class="form-control" id="ticker-symbol" >
+                                <input type="text" name="ticker" class="form-control" id="ticker-symbol">
                             </div>
                         </div>
                         <div class="form-group">
@@ -51,7 +51,7 @@
                                     <span class="input-group-text">Current Price</span>
                                 </div>
                                 <!-- {{ form.acquisition_cost }} -->
-                                <input type="text" name="current_price" class="form-control" id="current-price" >
+                                <input type="text" name="current_price" class="form-control" id="current-price">
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,7 +60,7 @@
                                     <span class="input-group-text">Total Share</span>
                                 </div>
                                 <!-- {{ form.total_share }} -->
-                                <input type="number" name="total_share" class="form-control" id="total-share" >
+                                <input type="number" name="total_share" class="form-control" id="total-share">
                             </div>
                         </div>
                         <div class="form-group">
@@ -69,22 +69,24 @@
                                     <span class="input-group-text">Total Price</span>
                                 </div>
                                 <!-- {{ form.total_cost }} -->
-                                <input type="text" name="total_cost" class="form-control" id="total-price" >
+                                <input type="text" name="total_cost" class="form-control" id="total-price">
                             </div>
                         </div>
-                       
+
                         <div class="form-group">
-                            <a type="submit" class="btn btn-success btn-block" data-toggle="modal" href="#myModal">Buy</a>  
+                            <a type="submit" class="btn btn-success btn-block" data-toggle="modal"
+                                href="#myModal">Buy</a>
                             <!-- Modal -->
                             <div class="modal" id="myModal">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Confirmation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" ariahidden="true">x</button>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                ariahidden="true">x</button>
                                         </div>
                                         <div class="modal-body">
-                                            Do you really want to purchase? 
+                                            Do you really want to purchase?
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-primary" type="submt">Yes</button>
@@ -107,7 +109,10 @@
 {% block script %}
 <script src="{% static 'buy_stock/ticker.js' %}"></script>
 <script src="{% static 'buy_stock/ui.js' %}"></script>
-<script src="{% static 'buy_stock/app.js' %}"></script> 
+<script>
+    let data = "{{ json_stocks }}"
+</script>
+<script src="{% static 'buy_stock/app.js' %}"></script>
 {% endblock %}
 
 {% endblock content %}

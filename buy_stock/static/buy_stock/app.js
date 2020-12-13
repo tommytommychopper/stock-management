@@ -1,3 +1,5 @@
+data = JSON.parse(data.replace(/&quot;/g, '"'));
+
 // Initialize ticker class
 const ticker = new Ticker;
 // Initialize ui class
@@ -8,14 +10,14 @@ const searchTicker = document.getElementById('ticker');
 // Search Price for particular stock 
 searchTicker.addEventListener('keyup', (e) => {
     const userText = e.target.value;
-    if(userText !== '') {
+    if (userText !== '') {
         ticker.getTicker(userText)
             .then(data => {
                 // console.log(data.bestMatches[0]['1. symbol']);
                 ui.showCompany(data.bestMatches);
             })
     }
-    
+
 });
 
 document.getElementById('search-price').addEventListener('submit', (e) => {
@@ -32,13 +34,13 @@ document.getElementById('search-price').addEventListener('submit', (e) => {
 
 function searchPrice() {
     const userText = searchTicker.value;
-    if(userText !== '') {
+    if (userText !== '') {
         ticker.getPrice(userText)
             .then(data => {
                 // console.log(data['Global Quote']['05. price']);
                 ui.showPrice(data['Global Quote']);
             })
-    } 
+    }
 }
 
 // Define UI vars 
@@ -46,13 +48,13 @@ const tickerList = document.querySelector('#box');
 const textInput = document.querySelector('#ticker');
 const totalShare = document.querySelector('#total-share');
 const currentPrice = document.querySelector('#current-price');
-const totalPrice= document.querySelector('#total-price');
+const totalPrice = document.querySelector('#total-price');
 const clearBotton = document.querySelector('.btn-danger');
 const result = document.querySelector('#results');
 
 loadEventListeners();
 
-function loadEventListeners() { 
+function loadEventListeners() {
     //Insert Ticker Text into Input form
     tickerList.addEventListener('click', insertTicker);
     //Calculate total price you need to buy the stock 
@@ -62,9 +64,9 @@ function loadEventListeners() {
 }
 
 function insertTicker(e) {
-    if (e.target.classList.contains('list-group-item')){
+    if (e.target.classList.contains('list-group-item')) {
         textInput.value = e.target.childNodes.item(0).textContent.trim();
-    }else if(e.target.classList.contains('text-right')){
+    } else if (e.target.classList.contains('text-right')) {
         textInput.value = e.target.parentElement.childNodes.item(0).textContent.trim();
     }
 }
@@ -72,10 +74,10 @@ function insertTicker(e) {
 function calculatePrice(e) {
     const shares = e.target.value;
     const price = parseFloat(currentPrice.value);
-    const total =  (shares * price).toFixed(2);
+    const total = (shares * price).toFixed(2);
     totalPrice.value = total;
 }
 
-function clearResult(){
+function clearResult() {
     result.textContent = '';
 }

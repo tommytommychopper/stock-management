@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Order
 from cash.models import Account
+import json
 
 # Add class_based rest Api 
 from rest_framework import viewsets 
@@ -14,9 +15,9 @@ def errrorMessage(request, msg):
 
 @login_required(login_url='/login/')
 def buy_stock(request):
+    user = request.user
+    user_account = Account.objects.filter(user=user).first()
     if request.method == 'POST':
-        user = request.user
-        user_account = Account.objects.filter(user=user).first()
         ticker = request.POST.get('ticker')
         acquisition_cost = float(request.POST.get('current_price'))
         total_share = int(request.POST.get('total_share'))
@@ -36,7 +37,9 @@ def buy_stock(request):
         user_account.save()
         errrorMessage(request, f"You successfully bought {total_share} of {ticker} at cost of {acquisition_cost}")
         return redirect('/')
-    return render(request, 'buy_stock/buy_stock.html')
+    json_stocks = json.dumps(list(Order.objects.filter(user_account=user_account).values()))
+    stocks = {'json_stocks':json_stocks}
+    return render(request, 'buy_stock/buy_stock.html', stocks)
 
 # APIs
 # Link up serializer with views 

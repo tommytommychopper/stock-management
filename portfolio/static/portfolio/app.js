@@ -241,19 +241,31 @@ function toggler(content, contentToggler) {
 }
 
 // Default Symbol
-displayChart(labels[0]);
+let currentSymbol = labels[0];
+let months = 12;
+displayChart(currentSymbol, months);
+
 document.body.addEventListener('click', (e) => {
     if (e.target.classList.contains('index')) {
-        const symbol = e.target.parentElement.id;
-        displayChart(symbol);
+        currentSymbol = e.target.parentElement.id;
+        displayChart(currentSymbol, months);
     }
 })
 
-function displayChart(symbol) {
+document.body.addEventListener('click', (e) => {
+    if (e.target.classList.contains('months')) {
+        months = e.target.parentElement.id;
+        displayChart(currentSymbol, months);
+    }
+})
+
+function displayChart(symbol, months) {
     ticker.getMonthlyPrice(symbol)
         .then(data => {
             // console.log(data['Monthly Time Series']['2020-12-11']);
-            ui.displayChart(data['Monthly Time Series'], symbol);
+            ui.displayChart(data['Monthly Time Series'], symbol, months);
         })
 }
+
+
 

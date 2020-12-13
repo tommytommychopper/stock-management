@@ -23,3 +23,7 @@ i {
 span{
     float: right;
 }
+
+#monthBarNav li{
+    margin-right: 15px;
+}

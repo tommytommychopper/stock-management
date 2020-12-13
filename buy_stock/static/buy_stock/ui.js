@@ -15,15 +15,16 @@ class UI {
         this.company.innerHTML = output;
     }
 
-    showPrice(data) {
-        const ticker = data['01. symbol'];
-        const price = parseFloat(data['05. price']);
+    showPrice(apiResult) {
+        const ticker = apiResult['01. symbol'];
+        const price = parseFloat(apiResult['05. price']);
         let share = 0;
         let acquisition_cost = 0.0
+        // data is comming from django template 
         for (let i = 0; i < data.length; i++) {
-            if (data.ticker === userText.toUpperCase()) {
-                share = data.total_share;
-                acquisition_cost = (data.acquisition_cost).toFixed(2);
+            if (data[i].ticker === ticker) {
+                share = data[i].total_share;
+                acquisition_cost = (data[i].acquisition_cost).toFixed(2);
             }
         }
         document.getElementById('box').textContent = '';
@@ -51,14 +52,14 @@ class UI {
         this.company.innerHTML = '';
     }
 
-    displayChart(data, name) {
+    displayChart(data, name, term) {
         let keys = Object.keys(data);
         let dates = [];
         let pricesClose = [];
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         // get prices for last no. of months
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < term; i++) {
             let key = keys[i];
             pricesClose.push(data[key]['4. close']);
             dates.push(months[Number(key.slice(5, 7) - 1)] + key.slice(2, 4));
