@@ -23,6 +23,7 @@ def portfolio(request):
         total_cash = user_account.remain_cash
         json_stocks = json.dumps(list(Order.objects.filter(user_account=user_account).values()))
         assets = {'json_stocks' : json_stocks, 'stocks' : stocks, 'total_cash' : total_cash}
+        showMessage(request, "5 API requests per minute. 500 requests per day.")
         return render(request, 'portfolio/portfolio.html', assets)
     else:
         # messages.info(request, 'You need to add some cash to your account')
