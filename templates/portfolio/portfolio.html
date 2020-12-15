@@ -10,9 +10,16 @@
 <div class="container mt-5">
     {% if messages %}
     {% for message in messages %}
-    <div id="msg" class="alert alert-success mt-2 mb-2">
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <div class="msg alert alert-danger mt-2 mb-2">
         {{ message }}
     </div>
+    {% endif %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="msg alert alert-success mt-2 mb-2">
+        {{ message }}
+    </div>
+    {% endif %}
     {% endfor %}
     {% endif %}
     <div class="row mb-5">
@@ -33,7 +40,7 @@
                         <td id="total_cash">
                             <div class="row">
                                 <div class="col">Cash Buying Power</div>
-                                <div id="total-cash" class="col">$ {{ total_cash }}</div>
+                                <div id="total-cash" class="col">$ {{ total_cash|floatformat:2 }}</div>
                             </div>
                         </td>
                     </tr>

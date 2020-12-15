@@ -10,9 +10,6 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import UserSerializer, AccountSerializer
 
-def showMessage(request, msg):
-    messages.info(request, msg)
-
 @login_required(login_url='/login/')
 def add_cash(request):
     form = AddCashForm()
@@ -28,7 +25,7 @@ def add_cash(request):
                 account.save()
             else:
                 Account(user=user, remain_cash=total).save()
-            showMessage(request, f"You added {total} to your account.") 
+            messages.success(request, f"You added {total} to your account.") 
             return redirect('/')
     content = {'form' : form }
     return render(request, 'cash/cash.html', content)

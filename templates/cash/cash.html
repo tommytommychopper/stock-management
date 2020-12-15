@@ -3,32 +3,39 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
-           <div class="card card-body mt-5">
             {% if messages %}
-               {% for message in messages %}
-                    <div id="msg" class="alert alert-danger mt-2 mb-2">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+            {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <div class="msg alert alert-danger mt-2 mb-2">
+                {{ message }}
+            </div>
             {% endif %}
-              <legend class="border-bottom mb-4">Add Cash</legend>
-              <form method="POST">
-                  {% csrf_token %}
-                  <div class="form-group">
-                      <div class="input-group">
-                          <div class="input-group-prepend">
-                              <span class="input-group-text">$</span>
-                          </div>
-                          {{ form.cash }} 
-                          <div class="input-group-append">
-                              <span class="input-group-text">0.0</span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group text-center">
-                    <input type="submit" class="btn btn-success " value="Add">
-                  </div>
-              </form>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="msg alert alert-success mt-2 mb-2">
+                {{ message }}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <div class="card card-body mt-5">
+                <legend class="border-bottom mb-4">Add Cash</legend>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            {{ form.cash }}
+                            <div class="input-group-append">
+                                <span class="input-group-text">0.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-success " value="Add">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -10,9 +10,6 @@ from rest_framework import permissions
 from .serializers import OrderSerializer
 from django.contrib import messages
 
-def errrorMessage(request, msg):
-    messages.info(request, msg)
-
 @login_required(login_url='/login/')
 def buy_stock(request):
     user = request.user
@@ -23,7 +20,7 @@ def buy_stock(request):
         total_share = int(request.POST.get('total_share'))
         total_cost = float(request.POST.get('total_cost'))
         if total_cost > user_account.remain_cash:
-            errrorMessage(request, "You don't have enough cash to buy")
+            messages.warning(request, "You don't have enough cash to buy")
             return redirect('add_cash')
         stock = Order.objects.filter(user_account=user_account, ticker=ticker).first()
         if stock:
@@ -35,7 +32,7 @@ def buy_stock(request):
             new_order.save()
         user_account.remain_cash -= total_cost
         user_account.save()
-        errrorMessage(request, f"You successfully bought {total_share} of {ticker} at cost of {acquisition_cost}")
+        messages.success(request, f"You successfully bought {total_share} of {ticker} at cost of {acquisition_cost}")
         return redirect('/')
     json_stocks = json.dumps(list(Order.objects.filter(user_account=user_account).values()))
     stocks = {'json_stocks':json_stocks}

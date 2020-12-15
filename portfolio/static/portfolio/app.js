@@ -26,10 +26,12 @@ const totalCash = document.querySelector('#total-cash')
 const summary = document.querySelectorAll('.summary')
 
 // Get Live Stock Data using Fetch API every 5 min
+//86,400,000 == 1 day
 getStockPrice();
 setInterval(() => {
+    console.log('Call API')
     getStockPrice();
-}, 300000)
+}, 86400000)
 
 let stocks;
 function getStockPrice() {
@@ -100,7 +102,7 @@ function calculateTotalAsset() {
         const aquisition_cost = aquisitionList[i].textContent;
         sum += (aquisition_cost * share);
     });
-    sum = sum + parseFloat(totalCash.textContent.replace('$', ''));
+    sum = parseFloat(sum + parseFloat(totalCash.textContent.replace('$', ''))).toFixed(2);
     totalAsset.textContent = `$ ${sum}`
 }
 

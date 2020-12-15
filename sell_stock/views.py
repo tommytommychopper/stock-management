@@ -5,9 +5,6 @@ from buy_stock.models import Order
 import json 
 from django.contrib import messages
 
-def showMessage(request, msg):
-    messages.info(request, msg)
-
 @login_required(login_url='/login/')
 def sell_stock(request):
     if request.method == 'POST':
@@ -20,13 +17,16 @@ def sell_stock(request):
         stock = Order.objects.filter(user_account=user_account, ticker=ticker).first()
         if stock:
             stock.total_share -=  total_share
-            stock.save()
+            if stock.total_share <= 0:
+                stock.delete()
+            else:
+                stock.save()
             user_account.remain_cash += total_profit
             user_account.save()
             if total_profit >= 0:
-                showMessage(request, f"You successfully sold {total_share} of {ticker} at const of {cur_price}. The profit is +{total_profit}.")
+                messages.success(request, f"You successfully sold {total_share} of {ticker} at const of {cur_price}. The profit is +{total_profit}.")
             else:
-                showMessage(request, f"You successfully sold {total_share} of {ticker} at const of {cur_price}. The loss is {total_profit}.")
+                messages.success(request, f"You successfully sold {total_share} of {ticker} at const of {cur_price}. The loss is {total_profit}.")
             return redirect('/')
     else:
         user = request.user;
