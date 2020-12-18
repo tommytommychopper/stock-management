@@ -5,3 +5,22 @@
 
 ## Login page
 <img src="images/login.png" width="">
+
+## Login page
+<img src="images/login.png" width="">
+
+## Portofolio page
+<img src="images/login.png" width="">
+
+## Buy page
+<img src="images/buy.png" width="">
+
+## Sell page
+<img src="images/sell.png" width="">
+
+## Jornal page
+<img src="images/jornal.png" width="">
+
+## About page
+<img src="images/about.png" width="">
+
