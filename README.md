@@ -6,9 +6,6 @@
 ## Login page
 <img src="images/login.png" width="">
 
-## Login page
-<img src="images/login.png" width="">
-
 ## Portofolio page
 <img src="images/portofolio.png" width="">
 
