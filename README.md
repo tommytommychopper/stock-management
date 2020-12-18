@@ -15,8 +15,11 @@
 ## Sell page
 <img src="images/sell.png" width="">
 
-## Jornal page
-<img src="images/jornal.png" width="">
+## Journal page
+<img src="images/journal.png" width="">
+
+## REST API page
+<img src="images/restAPI.png" width="">
 
 ## About page
 <img src="images/about.png" width="">
