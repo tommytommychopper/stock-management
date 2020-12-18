@@ -10,7 +10,7 @@
 <img src="images/login.png" width="">
 
 ## Portofolio page
-<img src="images/login.png" width="">
+<img src="images/portofolio.png" width="">
 
 ## Buy page
 <img src="images/buy.png" width="">
